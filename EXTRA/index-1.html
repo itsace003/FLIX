@@ -1,0 +1,174 @@
+<html>
+
+	<head>
+	
+		<title> Search your favourite movies. </title>
+		
+		<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		
+		<!-- Own CSS -->
+		<link rel="stylesheet" type="text/css" href="css/main-1.css">
+		
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Bungee|Pacifico" rel="stylesheet">
+		
+	</head>
+		
+	<body>
+		
+	<div class=mainHead>
+		
+		<div class=main>
+		
+		FLIX
+			
+		</div>
+		
+		<div class=mainHeadSub>
+		
+			May the force be with you!
+		
+		</div>
+		
+	</div>
+		
+	<div class="wrapper">
+
+		
+		<form>
+
+			<div class="form-group">
+
+				<input type="search" class="form-control form-control-lg" id="searchBox" placeholder="What movie do you need to know about?" autofocus>
+				
+				<button type="button" class="btn btn-primary" onclick="search()"> Shoot your Search !!</button>
+
+			</div>
+
+		</form>
+		
+	
+		
+		<div class="results">
+
+			<div class="card-deck" id="answer">	</div>
+
+		</div>	
+		
+	</div>
+		
+	</body>
+	
+	<script type="text/javascript">
+	
+		function search() {
+			
+			var data = window.location.search;
+			
+			alert("HI");
+			
+			document.getElementById("answer").innerHTML = "data";
+			
+			var queryString = document.getElementById("searchBox").value;
+			
+			var search = new XMLHttpRequest();
+			
+			var URL = "https://api.themoviedb.org/3/search/movie?api_key=74d9bb95f2c26a20a3f908c481d10af3&language=en-US&query=" +queryString + "&page=1&include_adult=false"
+			
+			search.open('GET', URL);
+			
+			search.onload = function() {
+				
+				var ans = JSON.parse(search.responseText);
+				
+				var resu = ans.total_results;
+				
+				var pages = ans.total_pages;
+				
+				var val = Math.floor(resu / pages);
+				
+				var titles = [];
+				
+				var poster = [];
+				
+				var info = [];
+				
+				var id = [];
+				
+				for( var i in ans.results) {
+					
+					titles.push(ans.results[i].title);
+					
+					poster.push("http://image.tmdb.org/t/p/w342/" + ans.results[i].poster_path);
+					
+					info.push(ans.results[i].overview);
+					
+					id.push(ans.results[i].id);
+					
+				}
+				
+				console.log(titles);
+				
+				var j=0;
+				
+				while(j<val) {
+					
+					if(j%3 != 0){
+				var card = " \
+  <div class=card> \
+    <img class=card-img-top src= " + poster[j] + " onerror=this.src='images/def.jpg'> \
+    <div class=card-body> \
+      <h5 class=card-title>" + titles[j] + "</h5> \
+      <p class=card-text>" + info[j] + "</p> \
+    </div> \
+    <div class=card-footer> \
+      <small class=text-muted>" + id[j] + "</small> \
+    </div> \ </div> \
+  "
+					
+				document.getElementById("answer").innerHTML += card; 
+					
+				
+					
+				} else {
+					
+					var card = " \
+  <div class=card> \
+    <img class=card-img-top src= " + poster[j] + " onerror=this.src='images/def.jpg'> \
+    <div class=card-body> \
+      <h5 class=card-title>" + titles[j] + "</h5> \
+      <p class=card-text>" + info[j] + "</p> \
+    </div> \
+    <div class=card-footer> \
+      <small class=text-muted>" + id[j] + "</small> \
+    </div> \ </div> \
+  "
+					
+				document.getElementById("answer").innerHTML += card + "<br>";
+					
+				}
+				++j;
+			}
+		
+			
+			
+		}
+			search.send();
+		};
+		
+		window.onload = function () {
+		
+			
+		
+    }
+			
+		};
+	
+	</script>
+
+</html>

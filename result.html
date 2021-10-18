@@ -1,0 +1,140 @@
+<html>
+
+	<head>
+	
+		<title> Captain America: Civil War </title>
+		
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
+		
+		<link rel="icon" href="images/media.png">
+		
+		<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		
+		<!-- Own CSS -->
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		 
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Bungee|Pacifico|Roboto" rel="stylesheet">
+		
+	</head>
+	
+	<body onresize="movies()">
+	
+		<div class="container-fluid">
+	
+			<h1 class="text-center head-name"><a class="link" href="index.php">FLIX!</a></h1>
+			<h3 class="text-center head-sub" id="headSub">May the force be with you!</h3>
+			
+			<div class="input-group input-group-lg search-div">
+				
+				<input type="text" class="form-control search" placeholder="Search..." aria-label="Search..." id="searchbox" autofocus>
+				
+				<div class="input-group-append">
+					
+					<button class="btn btn-lg btn-primary" type="button" onclick="search()" id="btn">Shoot</button>
+					
+				</div>
+				
+			</div>
+			
+			<div id="sugg" class="sugg">
+
+				<ul class="sugg-li">
+				
+					<li id="li-1" class="list" onclick="gotoSearch(this.id)"></li>
+					<li id="li-2" class="list" onclick="gotoSearch(this.id)"></li>
+					<li id="li-3" class="list" onclick="gotoSearch(this.id)"></li>
+					<li id="li-4" class="list" onclick="gotoSearch(this.id)"></li>
+					<li id="li-5" class="list" onclick="gotoSearch(this.id)"></li>
+					
+				</ul>
+				
+			</div>
+			
+			<div id="pop"></div>
+			
+			<div class="container container-result" id="popular-movies">
+				
+				<div class="row">
+					
+					<div class="col-sm" id="col-1-pop">
+						
+					</div>
+					
+					<div class="col-sm" id="col-2-pop">
+					 
+					</div>
+					
+					<div class="col-sm" id="col-3-pop">
+						
+					</div>
+					
+				</div>
+				
+			</div>
+			
+			<div class="container container-result" id="container-result">
+				
+				<div class="row">
+					
+					<div class="col-sm" id="col-1">
+						
+					</div>
+					
+					<div class="col-sm" id="col-2">
+					 
+					</div>
+					
+					<div class="col-sm" id="col-3">
+						
+					</div>
+					
+				</div>
+				
+			</div>
+			
+			<div class="container container-details" id="movie-details">
+			
+				<div class="row">
+				<div class="col-sm-5"><img class="poster-main" id="poster"></div>
+				<div class="col-sm-7"><h1 class="title-name" id="title"></h1>
+					<h5 id="director"></h5>
+					<h5 id="producer"></h5>
+					
+					<div class="video-container">
+						<iframe width="560" height="315" id="youtube-trailer" src="" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+					</div>
+						
+				</div>
+				</div>
+				
+				<div class="row">
+					
+				<div class="col-sm" id="info"></div>
+				</div>
+				
+				<div class="row">
+				<div class="col-sm-5" id="cast"></div>
+				<div class="col-sm-3"></div>
+				</div>
+				
+			</div>
+			
+		</div>
+	
+		<script type="text/javascript" src="js/load.js"></script>
+		
+		<script type="text/javascript" src="js/movie.js"></script>
+		
+		<script>
+		
+		</script>
+	
+	</body>

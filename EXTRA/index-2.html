@@ -1,0 +1,221 @@
+<html>
+
+	<head>
+	
+		<title> Search your favourite movies. </title>
+		
+		<link rel="icon" href="images/media.png">
+		
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		
+		<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		
+		<!-- Own CSS -->
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Bungee|Pacifico" rel="stylesheet">
+		
+	</head>
+		
+	<body>
+		
+	<div class="mainHead">
+		
+		<div class=main>
+		
+		FLIX
+			
+		</div>
+		
+		<div class=mainHeadSub>
+		
+			May the force be with you!
+		
+		</div>
+		
+	</div>
+		
+	<div class="container">
+	<div class="row">
+        <div class="col-md-6">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control input-lg" placeholder="" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+		
+		<div class="container">
+  <div class="row">
+    <div class="col-sm" id="col-1">
+      aaaaaaaaaaaaaaaaaaaaa
+    </div>
+    <div class="col-sm" id="col-2">
+     aaaaaaaaaaaaaaaaaaaaaa
+    </div>
+    <div class="col-sm" id="col-3">
+      aaaaaaaaaaaaaaaaaaaaa
+    </div>
+  </div>
+</div>
+		
+	
+		
+	</body>
+	
+	<script type="text/javascript">
+	
+		function search() {
+			
+			document.getElementById("col-1").innerHTML = "";
+			
+			document.getElementById("col-2").innerHTML = "";
+			
+			document.getElementById("col-3").innerHTML = "";
+			
+			var queryString = document.getElementById("searchBox").value;
+			
+			var search = new XMLHttpRequest();
+			
+			var URL = "https://api.themoviedb.org/3/search/movie?api_key=74d9bb95f2c26a20a3f908c481d10af3&language=en-US&query=" +queryString + "&page=1&include_adult=false"
+			
+			search.open('GET', URL);
+			
+			search.onload = function() {
+				
+				var ans = JSON.parse(search.responseText);
+				
+				var resu = ans.total_results;
+				
+				var pages = ans.total_pages;
+				
+				var val = Math.floor(resu / pages);
+				
+				var titles = [];
+				
+				var poster = [];
+				
+				var info = [];
+				
+				var id = [];
+				
+				for( var i in ans.results) {
+					
+					titles.push(ans.results[i].title);
+					
+					poster.push("http://image.tmdb.org/t/p/w342/" + ans.results[i].poster_path);
+					
+					info.push(ans.results[i].overview);
+					
+					id.push(ans.results[i].id);
+					
+				}
+				
+				console.log(titles);
+				
+				var j=0;
+				
+				var k=1;
+				
+				var l=2;
+				
+				while(j<val) {
+					
+				var card = " <div class=card> \
+    <img class=card-img-top src= " + poster[j] + " onerror=this.src='images/def.jpg'> \
+    <div class=card-body> \
+      <h5 class=card-title>" + titles[j] + "</h5> \
+      <p class=card-text>" + info[j] + "</p> \
+    </div> \
+    <div class=card-footer> \
+      <small class=text-muted>" + id[j] + "</small> \
+    </div> \ </div> "
+					
+					if(titles[j] == undefined) {
+					
+					break;
+					
+				}
+					
+				document.getElementById("col-1").innerHTML += card; 
+					
+				j = j + 3;
+					
+				}
+				
+				while(k<val) {
+					
+				var card = " <div class=card> \
+    <img class=card-img-top src= " + poster[k] + " onerror=this.src='images/def.jpg'> \
+    <div class=card-body> \
+      <h5 class=card-title>" + titles[k] + "</h5> \
+      <p class=card-text>" + info[k] + "</p> \
+    </div> \
+    <div class=card-footer> \
+      <small class=text-muted>" + id[k] + "</small> \
+    </div> \ </div> "
+					
+					if(titles[k] == undefined) {
+					
+					break;
+					
+				}
+					
+				document.getElementById("col-2").innerHTML += card; 
+					
+				k = k + 3;
+					
+				}
+				
+				while(l<val) {
+					
+				var card = " <div class=card> \
+    <img class=card-img-top src= " + poster[l] + " onerror=this.src='images/def.jpg'> \
+    <div class=card-body> \
+      <h5 class=card-title>" + titles[l] + "</h5> \
+      <p class=card-text>" + info[l] + "</p> \
+    </div> \
+    <div class=card-footer> \
+      <small class=text-muted>" + id[l] + "</small> \
+    </div> \ </div> "
+					
+					if(titles[l] == undefined) {
+					
+					break;
+					
+				}
+					
+				document.getElementById("col-3").innerHTML += card; 
+					
+				l = l + 3;
+					
+				}
+				
+			}
+		
+			search.send();
+			
+		};
+		
+		window.onload = function () {
+			
+			alert(window.location.search.substring(4));
+			
+		};
+	
+	</script>
+
+</html>
